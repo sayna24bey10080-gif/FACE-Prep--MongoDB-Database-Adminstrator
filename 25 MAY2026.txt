@@ -1,0 +1,164 @@
+S>_MONGOSH
+
+> show databases
+
+< admin
+
+config 60.00 KiB
+local
+
+> show dbs
+
+< admin
+
+config 60.00 KiB
+
+local
+
+> use vit
+
+< switched to db vit
+> db.dropDatabase()
+< { ok: 1, dropped: 'vit' }
+> show databases
+
+< admin
+
+config 60.00 KiB
+local
+
+> use vit
+
+< already on db vit
+> show dbs
+
+< admin
+
+config 60.00 KiB
+local
+
+> use db
+
+< switched to db db
+> db.createCollection("Student")
+< { ok: 1 }
+
+> show collections
+
+< Student
+
+> db.Student.drop()
+
+< true
+
+> show collections
+
+> db.createCollection("Student")
+< { ok: 1 }
+> db.createCollection("Employee")
+< { ok: 1 }
+> db. Employee. insert ({name: 'Nilesh' , department: 'CSE' })
+< DeprecationWarning: Collection. insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+
+acknowledged: true,
+insertedIds: {
+'0': ObjectId('6a14583a576a2eecde5fde33')
+
+V
+
+سلم
+
+> db. Employee. insert({name: 'Tanya' ,mark: 90, location: 'Chennai'})
+
+acknowledged: true,
+insertedIds: {
+'0': ObjectId('6a14585e576a2eecde5fde34')
+
+> db. Employee. find
+< [Function: find] AsyncFunction {
+returnsPromise: true,
+apiVersions: [ 1, Infinity ],
+returnType: 'Cursor',
+serverVersions: [ '0.0.0', '999.999.999' ],
+topologies: [ 'ReplSet', 'Standalone', 'Sharded', 'LoadBalanced' ],
+deprecated: false,
+platforms: [ 'Compass', 'Browser', 'CLI' ],
+isDirectShellCommand: false,
+
+acceptsRawInput: false,
+shellCommandCompleter: undefined,
+newShellCommandCompleter: undefined,
+help: [Function (anonymous)] Help
+
+>db. Employee. find()
+
+_id: ObjectId('6a14583a576a2eecde5fde33'),
+name: 'Nilesh',
+department: 'CSE'
+
+_id: ObjectId('6a14585e576a2eecde5fde34'),
+name: 'Tanya',
+
+mark: 90,
+
+location: 'Chennai'
+
+> db. Employee. insertmn
+< db.Employee. insertmn
+> db. Employee. insertMany ( {name: 'Heera' , place: 'Hyderabad' } , {name: 'Aman' , place: 'Prayagraj '})
+MongoInvalidArgumentError: Argument "docs" must be an array of documents
+> db. Employee. insertMany ([ {name: 'Heera' ,place: 'Hyderabad' } , {name : 'Aman' , place: 'Prayagraj ' }])
+
+acknowledged: true,
+insertedIds: {
+'0': ObjectId('6a14592d576a2eecde5fde35'),
+'1': ObjectId('6a14592d576a2eecde5fde36')
+
+> db. Employee. find()
+
+id: ObjectId('6a14583a576a2eecde5fde33'),
+name: 'Nilesh',
+department: 'CSE'
+
+_id: ObjectId('6a14585e576a2eecde5fde34'),
+name: 'Tanya',
+
+mark: 90,
+location: 'Chennai'
+
+_id: ObjectId('6a14592d576a2eecde5fde35'),
+name: 'Heera',
+
+place: 'Hyderabad'
+
+_id: ObjectId('6a14592d576a2eecde5fde36'),
+name: 'Aman',
+
+place: 'Prayagraj'
+
+> db. Employee. remove ({name : 'Heera'})
+< DeprecationWarning: Collection. remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+
+acknowledged: true,
+deletedCount: 1
+
+> db.Employee. find()
+
+_id: ObjectId('6a14583a576a2eecde5fde33'),
+name: 'Nilesh',
+
+department: 'CSE'
+
+{
+
+_id: ObjectId('6a14585e576a2eecde5fde34'),
+name: 'Tanya',
+
+mark: 90,
+location: 'Chennai'
+
+{
+
+_id: ObjectId('6a14592d576a2eecde5fde36'),
+name: 'Aman',
+place: 'Prayagraj'
