@@ -1,0 +1,850 @@
+> use vitcampus
+< switched to db vitcampus
+> show collections
+< products
+> // SORITNG -> cursor.sort({field1: order, field2: order, ... })
+// cursor.sort({ field: 1 }) ASCENDING
+>// cursor.sort({field: -1})-> dESCENDING
+>/*cursor.sort({field1: 1, field2: -1}); 1 IN ASCENDING ORDER AND FIELD 2 IN DESCENDING ORDER
+
+> Db.products. find({
+'price': {
+$exists: 1
+
+1, {
+name: 1,
+price: 1
+
+ReferenceError: Db is not defined
+> db.products. find({_ib.products. find({
+'price': {
+$exists: 1
+
+1, {
+name: 1,
+
+price: 1
+
+SyntaxError: Unexpected token, expected "," (1:21)
+
+> 1 | db.products. find({_ib.products. find({
+
+'price': {
+$exists: 1
+
+2 |
+3 |
+
+> db.products.find({_id.products. find({
+'price': {
+$exists: 1
+
+name: 1,
+
+price: 1
+
+2
+3 |
+4|
+>db.products. find({
+'price': {
+$exists: 1
+
+SyntaxError: Unexpected token, expected "," (1:21)
+
+> 1 | db.products. find({_id.products.find({
+
+'price': {
+$exists: 1
+name: 1,
+price: 1
+
+_id: 1,
+name: 'xPhone',
+
+price: 799
+
+_id: 2,
+name: 'xTablet',
+price: 899
+
+_id: 3,
+name: 'SmartTablet',
+price: 899
+
+_id: 4,
+
+name: 'SmartPad',
+
+price: 699
+
+_id: 5,
+name: 'SmartPhone',
+
+price: 599
+
+db.products. find({
+'price': {
+$exists: 1
+
+name: 1,
+
+price: 1
+}).sort({
+price: 1
+
+_id: 5,
+name: 'SmartPhone',
+price: 599
+
+_id: 4,
+name: 'SmartPad',
+price: 699
+
+name :
+
+_id: 1,
+'xPhone'
+price: 799
+
+_id: 2,
+name: 'xTablet',
+price: 899
+
+_id: 3,
+name: 'SmartTablet',
+price: 899
+
+> db.products. find({
+'price': {
+$exists: 1
+
+1,0
+name: 1,
+price: 1
+}).sort({
+price: -1
+
+id: 2,
+name: 'xTablet',
+price: 899
+
+_id: 3,
+name: 'SmartTablet',
+price: 899
+
+_id: 1,
+name: 'xPhone',
+
+price: 799
+
+_id: 4,
+name: 'SmartPad',
+price: 699
+
+_id: 5,
+name: 'SmartPhone',
+price: 599
+
+> //By two or more fields
+> db.products. find({
+'price': {
+$exists: 1
+1, {
+name: 1,
+price: 1
+}).sort({
+price: 1,
+name: 1
+
+_id: 5,
+name: 'SmartPhone',
+
+price: 599
+
+_id: 4,
+name: 'SmartPad',
+price: 699
+
+_id: 1,
+name: 'xPhone',
+price: 799
+
+_id: 3,
+name: 'SmartTablet',
+
+price: 899
+
+_id: 2,
+name: 'xTablet',
+price: 899
+
+> db.products. find({
+'price': {
+$exists: 1
+
+1, {
+name: 1,
+price: 1
+}).sort({
+price: 1,
+name: -1
+
+_id: 5,
+name: 'SmartPhone',
+price: 599
+
+_id: 4,
+name: 'SmartPad',
+price: 699
+_id: 1,
+name: 'xPhone',
+
+price: 799
+
+_id: 2,
+name: 'xTablet',
+price: 899
+
+_id: 3,
+name: 'SmartTablet',
+price: 899
+
+>db.products. find({
+releaseDate: {
+$exists: 1
+
+1,0
+name: 1,
+releaseDate: 1
+}).sort({
+releaseDate: 1
+
+_id: 1,
+name: 'xPhone',
+releaseDate: 2011-05-14T00:00:00.000Z
+
+_id: 2,
+name: 'xTablet',
+releaseDate: 2011-09-01T00:00:00.000Z
+
+_id: 3,
+name: 'SmartTablet',
+releaseDate: 2015-01-14T00:00:00.000Z
+
+id: 4,
+name: 'SmartPad',
+
+releaseDate: 2020-05-14T00:00:00.000Z
+
+_id: 5,
+name: 'SmartPhone',
+releaseDate: 2022-09-14T00:00:00.000Z
+> db.products. find({
+releaseDate: {
+$exists: 1
+
+1, 0
+name: 1,
+releaseDate: 1
+
+}).sort({
+releaseDate: -1
+
+_id: 5,
+name: 'SmartPhone',
+releaseDate: 2022-09-14T00:00:00.000Z
+
+_id: 4,
+name: 'SmartPad',
+releaseDate: 2020-05-14T00:00:00.000Z
+
+_id: 3,
+name: 'SmartTablet',
+releaseDate: 2015-01-14T00:00:00.000Z
+
+_id: 2,
+name: 'xTablet',
+releaseDate: 2011-09-01T00:00:00.000Z
+
+_id: 1,
+name: 'xPhone',
+releaseDate: 2011-05-14T00:00:00.000Z
+
+> //Sorting documents by fields in embedded documents
+> db.products.find({}, {
+name: 1,
+spec: 1
+}).sort({
+"spec.ram": 1
+
+_id: 1,
+name: 'xPhone' ,
+spec: {
+ram: 4,
+screen: 6.5,
+cpu: 2.66
+_id: 5,
+name: 'SmartPhone',
+
+spec: {
+ram: 4,
+
+screen: 9.7,
+
+cpu: 1.66
+
+_id: 4,
+
+name: 'SmartPad'
+
+spec: {
+
+ram: 8.
+
+screen: 9.7,
+
+cpu: 1.66
+
+: 3,
+
+name: 'SmartTablet',
+
+spec: {
+
+ram: 12.
+
+screen: 9.7,
+
+cpu: 3.66
+
+id: 2,
+
+name: 'xTablet' ,
+spec: {
+
+ram: 16,
+
+screen: 9.5,
+
+cpu: 3.66
+
+_id: 6,
+name: 'xWidget' ,
+
+spec: {
+ram: 64.
+
+screen: 9.7,
+
+cpu: 3.66
+
+/*The following example sorts the products by the values in the ram field in the spec embedded documents. It includes the _id, name, and spec fields in the matching documents*/
+
+Limit and skip 
+
+>/*To limit the number of returned documents, you use the limit () method:
+
+db.collection.find(<query>).limit(<documentCount>
+Code language: CSS (css)
+
+The <documentCount> is in the range of -231 and 231. If you specify a value for the
+<documentCount> that is out of this range, the behavior of the limit () is
+unpredictable .* /
+>//If the <documentCount> is negative, the limit() returns the same number of documents as if the <documentCount> is positive
+>/*The skip() method specifies from where the query should start returning the documents:
+cursor.skip(<offset>)
+
+>db.products. find({}, {
+name: 1,
+price: 1
+}).sort({
+price: -1
+}).limit(1);
+
+_id: 2,
+name: 'xTablet',
+price: 899
+
+> db.products.find({}, {
+name: 1,
+
+price: 1
+
+}).sort({
+price: -1,
+name: 1
+
+}).limit(1);
+
+_id: 3,
+name: 'SmartTablet',
+price: 899
+
+> //to divide the products collection into pages, each has 2 products
+> db.products.find({}, {
+name: 1,
+price: 1
+}).sort({
+price: -1,
+name: 1
+}).skip(2).limit(2);
+
+_id: 1,
+name: 'xPhone' ,
+
+price: 799
+
+_id: 4,
+name: 'SmartPad',
+
+price: 699
+}
+
+> /*The updateOne
+condition.
+
+( method allows you to update a single document that satisfies a
+
+The following shows the syntax of the updateOne () method:
+
+db.collection. updateOne(filter, update, options
+Code language: CSS (css)
+
+In this syntax:
+
+. The filter is a document that specifies the criteria for the update. If the
+filter matches multiple documents, then the updateOne () method
+updates only the first document. If you pass an empty document {} into the
+method, it will update the first document returned in the collection.
+. The update is a document that specifies the change to apply.
+. The options argument provides some options for updates that won't be
+covered in this tutorial.
+
+The updateOne () method returns a document that contains some fields. The
+notable ones are:
+
+. The matchedCount returns the number of matched documents.
+. The modifiedCount returns the number of updated documents. In the case
+of the updateOne () method, it can be either @ or 1 .* /
+> /*$set operator
+
+The $set operator allows you to replace the value of a field with a specified value.
+The $set operator has the following syntax:
+
+{ $set: {<field1>: <valuel>,<field2>: <value2>, ... }}
+Code language: HTML, XML (xml)
+
+If the field doesn't exist, the $ set operator will add the new field with the specified
+value to the document as long as the new field doesn't violate a type constraint.
+
+If you specify the field with the dot notation e.g., embededDoc. field and the
+field does not exist, the $set will create the embedded document (embedded) .* /
+> db.products.updateOne({
+_id: 1
+
+$set: {
+price: 899
+
+acknowledged: true,
+insertedId: null,
+
+matchedCount: 1,
+
+modifiedCount: 1,
+upsertedCount: 0
+
+> // to verify
+> db.products. findone({ _id: 1 }, { name: 1, price: 1 })
+
+_id: 1,
+name: 'xPhone',
+price: 899
+
+بـ
+
+> db.products.updateOne({ price: 899 }, { $set: { price: null } })
+
+acknowledged: true,
+insertedId: null,
+
+matchedCount: 1,
+
+modifiedCount: 1,
+upsertedCount: 0
+
+> // To verify
+> db.products.find({ _id: 1}, { name: 1, price: 1 })
+
+_id: 1,
+name: 'xPhone',
+price: null
+
+> db.products.updateOne({
+_id: 4
+1, 0
+$set: {
+"spec.ram": 16,
+"spec.screen": 10.7,
+"spec.cpu": 2.66
+
+acknowledged: true,
+insertedId: null,
+
+matchedCount: 1,
+modifiedCount: 1,
+
+upsertedCount: 0
+
+> // to update array elements
+> db.products.updateOne(
+{ _id: 4},
+
+$set: {
+"storage.0": 16,
+
+"storage.1": 32
+
+acknowledged: true,
+insertedId: null,
+matchedCount: 1,
+modifiedCount: 1,
+> // to verify
+> db.products.find({ _id: 4 }, { name: 1, storage: 1 });
+
+_id: 4,
+name: 'SmartPad',
+storage: [
+16,
+32,
+1024
+
+> // update many
+> db.products.updateMany(
+{ price: 899],
+{ $set: { price: 895 }}
+
+acknowledged: true,
+insertedId: null,
+
+matchedCount: 2,
+modifiedCount: 2,
+
+upsertedCount: 0
+
+> // to check
+> db.products.find({
+price: 895
+
+name: 1,
+price: 1
+
+1)
+
+_id: 2,
+name: 'xTablet',
+price: 895
+
+_id: 3,
+name: 'SmartTablet',
+price: 895
+
+> db.products. find({
+price: { $gt: 700}
+
+name: 1,
+price: 1,
+
+spec: 1
+
+v
+
+_id: 2,
+name: 'xTablet',
+price: 895,
+spec: {
+ram: 16,
+
+screen: 9.5,
+cpu: 3.66
+
+_id: 3,
+name: 'SmartTablet',
+price: 895,
+spec: {
+ram: 12,
+screen: 9.7,
+
+cpu: 3.66
+
+> db.products.updateMany ({
+price: { $gt: 700}
+
+$set: {
+"spec.ram": 32,
+"spec.screen": 9.8,
+"spec.cpu": 5.66
+
+acknowledged: true,
+insertedId: null,
+matchedCount: 2,
+modifiedCount: 2,
+upsertedCount: 0
+
+> db.products.updateMany({
+id: {
+$in: [1, 2, 3]
+
+1, 0
+$set: {
+"storage.0": 16,
+"storage.1": 32
+
+acknowledged: true,
+insertedId: null,
+
+matchedCount: 3,
+
+modifiedCount: 3,
+
+upsertedCount: 0
+
+>// to verify
+> db.products. find(
+{ _id: { $in: [1,2,3]}},
+{ name: 1, storage: 1}
+
+_id: 1,
+name: 'xPhone',
+storage: [
+16,
+
+32,
+256
+_id: 2,
+name: 'xTablet',
+storage: [
+
+16
+
+32
+512
+
+_id: 3,
+name: 'SmartTablet',
+storage: [
+16
+
+32
+
+128
+
+> /*The Sinc operator has the following syntax:
+
+{ $inc: {<field1>: <amount1>, <field2>: <amount2>, ... } }*/
+db.prody
+< vitcampus.prody
+> db.products.drop();
+< true
+> db.products.insertMany([
+{ "_id" : 1, "name" : "xPhone", "price" : 799, "releaseDate": ISODate("2011-05-14"), "spec" : { "ram" : 4, "screen" : 6.5, "cpu" : 2.66 },"color": ["white", "black"], "storage" : [64, 128,256]},
+{ "_id" : 2, "name" : "xTablet", "price" : 899, "releaseDate": ISODate("2011-09-01") , "spec" : { "ram" : 16, "screen" : 9.5, "cpu" : 3.66 },"color":["white", "black", "purple"], "storage": [128,256,512]},
+{ "_id" : 3, "name" : "SmartTablet", "price" : 899, "releaseDate": ISODate("2015-81-14"), "spec" : { "ram" : 12, "screen" : 9.7, "cpu" : 3.66 },"color": ["blue"], "storage" : [16,64,128]},
+{ "_id" : 4, "name" : "SmartPad", "price" : 699, "releaseDate": ISODate("2020-85-14"),"spec" : { "ram" : 8, "screen" : 9.7, "cpu" : 1.66 },"color":["white", "orange", "gold","gray"], "storage": [128,256,1024]},
+{ "_id" : 5, "name" : "SmartPhone", "price" : 599,"releaseDate": ISODate("2022-09-14"), "spec" : { "ram" : 4, "screen" : 5.7, "cpu" : 1.66 },"color":["white", "orange","gold", "gray"], "storage": [128, 256]}
+
+acknowledged: true,
+insertedIds: {
+
+'1': 2,
+
+'2': 3,
+
+'3': 4,
+
+'4': 5
+
+> db.products.updateone({
+
+_id: 1
+
+$inc: {
+price: 50
+
+acknowledged: true,
+insertedId: null,
+matchedCount: 1,
+modifiedCount: 1,
+upsertedCount: 0
+
+> // to check
+>db.products.updateone({
+_id: 1
+
+$inc: {
+price: -150
+
+acknowledged: true,
+insertedId: null,
+
+matchedCount: 1,
+modifiedCount: 1,
+upsertedCount: 0
+>db.products.updateOne({
+_id: 1
+
+$inc: {
+price: -150
+
+acknowledged: true,
+insertedId: null,
+matchedCount: 1,
+
+modifiedCount: 1,
+
+upsertedCount: 0
+
+> // To verify
+> db.products. find(
+{ _id: 1},
+{ name: 1, price: 1 }
+
+_id: 1,
+name: 'xPhone',
+
+price: 549
+
+> db.products.updateOne({
+_id: 1
+1, {
+$inc: {
+price: 50,
+"spec.ram": 4
+
+acknowledged: true,
+insertedId: null,
+
+matchedCount: 1,
+
+modifiedCount: 1,
+upsertedCount: 0
+
+vitcampus >
+
+/*t smin: iemetol: cvatuel>,
+Code language: HTML, XML (xml)
+
+The $min operator is a field update operator that allows you to update the value of a
+field to a specified value if the specified value is less than (<) the current value of the
+
+field.
+
+The $min operator has the following syntax:
+
+If the current value of a field is greater than or equal to the value that you want to
+update, the $min operator won't update the value.
+
+If the field doesn't exist, the $min operator creates the field and sets its value to the
+specified value .* /
+> db.products.drop()
+< true
+> db.products.insertMany ([
+{ "_id" : 1, "name" : "xPhone", "price" : 799, "releaseDate": ISODate("2011-05-14"), "spec" : { "ram" : 4, "screen" : 6.5, "cpu" : 2.66 },"color":["white", "black"], "storage": [64, 128, 256]},
+{ "_id" : 2, "name" : "xTablet", "price" : 899, "releaseDate": ISODate("2011-09-01") , "spec" : { "ram" : 16, "screen" : 9.5, "cpu" : 3.66 },"color": ["white", "black", "purple"], "storage": [128, 256, 512]],
+{ "_id" : 3, "name" : "SmartTablet", "price" : 899, "releaseDate": ISODate("2015-01-14"), "spec" : { "ram" : 12, "screen" : 9.7, "cpu" : 3.66 },"color":["blue"], "storage": [16,64,128]},
+{ "_id" : 4, "name" : "SmartPad", "price" : 699, "releaseDate": ISODate("2020-85-14"),"spec" : { "ram" : 8, "screen" : 9.7, "cpu" : 1.66 },"color":["white","orange", "gold", "gray"], "storage": [128,256, 1024]},
+{ "_id" : 5, "name" : "SmartPhone", "price" : 599,"releaseDate": ISODate("2022-09-14"), "spec" : { "ram" : 4, "screen" : 5.7, "cpu" : 1.66 },"color":["white", "orange","gold", "gray"], "storage": [128, 256]}
+
+acknowledged: true,
+
+insertedIds: {
+'0': 1,
+
+'1': 2,
+
+'2': 3,
+
+'3': 4,
+'4': 5
+
+db.products .updateone({
+
+id: 5
+
+$min: {
+
+price: 699
+
+acknowledged: true,
+insertedId: null,
+matchedCount: 1,
+modifiedCount: 0,
+
+upsertedCount: 8
+
+> //The following example uses the $min operator to update the price of the document _id 5
+> db.products.updateOne({
+id: 5
+$min: {
+price: 499
+
+acknowledged: true,
+insertedId: null,
+matchedCount: 1,
+
+modifiedCount: 1,
+upsertedCount: 0
+
+/*The $max is a field update operator that allows you to update the value of a field to a
+specified value if the specified value is greater than (>) the current value of the field.
+
+Here is the syntax of the $max operator:
+
+{ $max: {<field1>: <value1>, ... } }
+Code language: HTML, XML (xml)
+
+If the current value of a field is less than or equal to the value that you want to
+update, the $max operator won't update the value.
+
+If the field doesn't exist, the $max operator creates the field and sets its value to the
+specified value.*/
+db.products.updateOne({
+    _id: 1
+}, {
+    $max: {
+        price: 699
+    }
+})
+db.products.updateOne({
+    _id: 1
+}, {
+    $max: {
+        price: 699
+    }
+})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+db.products.updateOne({
+    _id: 1
+}, {
+    $max: {
+        price: 899
+    }
+})
+
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+// To verify
+db.products.find({ _id: 1 }, { name: 1, price: 1 })
+
+db.products.find({ _id: 1 }, { name: 1, price: 1 })
