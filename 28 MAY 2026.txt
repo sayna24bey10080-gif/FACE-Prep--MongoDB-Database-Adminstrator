@@ -1,0 +1,1624 @@
+//Element Query Operator
+/*The $exists is an element query operator that has the following syntax:
+
+field: { $exists: <boolean_value>
+Code Language: CSS (css)
+
+When the <boolean value> is true, the $exists operator matches the
+documents that contain the field with any value including null .* /
+use vit
+switched to db vit
+db.products. drop()
+true
+db.products. insertMany ([
+{ "_id" : 1, "name" : "xPhone", "price" : 799, "releaseDate" : ISODate("2011-85-14T00:00:00Z"), "spec" : { "ram" : 4, "screen" : 6.5, "cpu" : 2.66 }, "color" : [ "white", "black" ], "storage" : [ 64, 128, 256 ] },
+{ "_id" : 2, "name" : "xTablet", "price" : 899, "releaseDate" : ISODate("2011-09-01T00:00:00Z"), "spec" : { "ram" : 16, "screen" : 9.5, "cpu" : 3.66 }, "color" : [ "white", "black", "purple" ], "storage" : [ 128, 256, 512 ] },
+{ "_id" : 3, "name" : "SmartTablet", "price" : 899, "releaseDate" : ISODate("2015-01-14T00:00:00Z"), "spec" : { "ram" : 12, "screen" : 9.7, "cpu" : 3.66 }, "color" : [ "blue" ], "storage" : [ 16, 64, 128 ] },
+{ "_id" : 4, "name" : "SmartPad", "price" : 699, "releaseDate" : ISODate("2028-05-14T00:00:00Z"), "spec" : { "ram" : 8, "screen" : 9.7, "cpu" : 1.66 }, "color" : [ "white", "orange", "gold", "gray" ], "storage" : [ 128, 256, 1024 ] },
+{ "_id" : 5, "name" : "SmartPhone", "price" : 599, "releaseDate" : ISODate("2022-09-14T08:08:08Z"), "spec" : { "ram" : 4, "screen" : 9.7, "cpu" : 1.66 }, "color" : [ "white", "orange", "gold", "gray" ], "storage" : [ 128, 256 ] },
+{ "_id" : 6, "name" : "xWidget", "spec" : { "ram" : 64, "screen" : 9.7, "cpu" : 3.66 }, "color" : [ "black" ], "storage" : [ 1024 ] }
+
+acknowledged: true,
+insertedIds: {
+
+'1': 2,
+
+'2': 3,
+
+'3': 4,
+
+'5': 6
+
+db.products.find()
+
+id: 1,
+
+name: 'xPhone'
+
+price: 799,
+releaseDate: 2011-05-14T00:00:00.000Z,
+
+spec: {
+ram: 4,
+screen: 6.5,
+
+cpu: 2.66
+
+color: [
+white'
+
+black'
+
+storage: [
+
+64.
+
+128.
+
+256
+_id: 2,
+name: 'xTablet',
+price: 899,
+releaseDate: 2011-09-01T00:00:00.000Z,
+spec: {
+ram: 16,
+
+screen: 9.5,
+
+cpu: 3.66
+
+color: [
+'white',
+
+'black',
+'purple'
+
+storage: [
+128
+
+256
+
+512
+
+1,
+
+_id: 3,
+name: 'SmartTablet',
+price: 899,
+releaseDate: 2015-01-14T00:00:00.000Z,
+
+spec: {
+ram: 12,
+
+screen: 9.7,
+
+cpu: 3.66
+
+color: [
+'blue'
+
+storage: [
+16,
+
+64,
+
+128
+
+_id: 4,
+name: 'SmartPad',
+
+price: 699,
+releaseDate: 2020-05-14T00:00:00.000Z,
+spec: {
+ram: 8,
+
+screen: 9.7,
+cpu: 1.66
+
+color: [
+1,
+
+'white',
+'orange',
+'gold',
+'gray'
+
+storage: [
+
+128
+
+256
+
+1024
+
+1
+
+_id: 5,
+name: 'SmartPhone',
+price: 599,
+releaseDate: 2022-09-14T00:00:00.000Z,
+spec: {
+
+ram: 4,
+screen: 9.7,
+cpu: 1.66
+1,
+color: [
+'white',
+
+'orange',
+'gold',
+'gray'
+
+1,
+storage: [
+128
+
+25
+
+_id: 6,
+name: 'xWidget',
+spec: {
+ram: 64,
+
+screen: 9.7,
+cpu: 3.66
+1,
+color: [
+'black'
+
+storage: [
+1024
+
+1
+
+db.products. find({
+price:{
+$exists:true,
+_id: 1,
+name: 'xPhone',
+price: 799,
+releaseDate: 2011-05-14T00:00:00.000Z,
+spec: {
+ram: 4,
+screen: 6.5,
+cpu: 2.66
+
+color: [
+'white',
+
+'black'
+
+storage: [
+64
+128
+256
+
+_id: 2,
+name: 'xTablet',
+price: 899,
+releaseDate: 2011-09-01T00:00:00.000Z,
+spec: {
+ram: 16,
+screen: 9.5,
+cpu: 3.66
+
+color: [
+'white',
+
+'black',
+'purple'
+
+storage: [
+128
+
+256
+
+512
+
+1,
+
+_id: 3,
+name: 'SmartTablet',
+price: 899,
+releaseDate: 2015-01-14T00:00:00.000Z,
+
+spec: {
+ram: 12,
+screen: 9.7,
+cpu: 3.66
+
+color: [
+'blue'
+1,
+storage: [
+16
+
+64,
+
+128
+
+1
+
+_id: 4,
+name: 'SmartPad',
+price: 699,
+releaseDate: 2020-05-14T00:00:00.000Z,
+spec: {
+ram: 8,
+screen: 9.7,
+
+cpu: 1.66
+
+color: [
+'white',
+
+'orange',
+'gold',
+'gray'
+
+storage: [
+
+128
+
+256
+
+1024
+
+_id: 5,
+name: 'SmartPhone',
+
+price: 599,
+releaseDate: 2022-09-14T00:00:00.000Z,
+spec: {
+ram: 4,
+
+screen: 9.7,
+
+cpu: 1.66
+1,
+color: [
+'white',
+
+'orange',
+'gold',
+gray'
+
+],
+storage: [
+
+128
+256
+
+db.products. find ({
+price:{
+$exists:true,
+$gt:699
+
+name: 1,
+
+_id: 1,
+name: 'xPhone'
+
+_id: 2,
+name: 'xTablet'
+
+_id: 3,
+
+name: 'SmartTablet'
+
+db.products. find({
+price:{
+$exists:true,
+$gt:699
+
+name: 1,
+price:1
+
+_id: 1,
+name: 'xPhone',
+
+price: 799
+
+id: 2,
+name: 'xTablet',
+price: 899
+
+_id: 3,
+name: 'SmartTablet',
+price: 899
+
+db.products. find({
+price:{
+$exists:false,
+
+name: 1,
+price:1
+_id: 6,
+name: 'xWidget'
+
+> db.products. find({
+color: {
+$size: 2
+
+1, 0
+name: 1,
+color: 1
+
+_id: 1,
+name: 'xPhone',
+color: [
+'white',
+'black'
+
+> db.products. find({ "storage": { $type: "array" } })
+
+_id: 1,
+name: 'xPhone',
+
+price: 799,
+releaseDate: 2011-05-14T00:00:00.000Z,
+spec: {
+ram: 4,
+screen: 6.5,
+
+cpu: 2.66
+
+color: [
+'white',
+
+'black'
+
+storage: [
+
+64
+
+128
+
+75.6
+
+_id: 2,
+name: 'xTablet',
+price: 899,
+releaseDate: 2011-09-01T00:00:00.000Z,
+spec: {
+ram: 16,
+screen: 9.5,
+cpu: 3.66
+1,
+color: [
+'white',
+'black',
+'purple'
+
+storage: [
+128
+
+256
+
+512
+
+_id: 3,
+name: 'SmartTablet',
+price: 899,
+releaseDate: 2015-01-14T00:00:00.000Z,
+spec: {
+ram: 12,
+screen: 9.7,
+cpu: 3.66
+
+color: [
+'blue'
+
+1,
+storage: [
+16,
+
+64,
+
+178
+
+1
+
+_id: 4,
+name: 'SmartPad' ,
+price: 699,
+releaseDate: 2020-05-14T00:00:00.000Z,
+spec: {
+ram: 8,
+
+screen: 9.7,
+cpu: 1.66
+
+color: [
+'white',
+
+'orange',
+'gold',
+"gray'
+1,
+storage: [
+128,
+
+256
+
+1024
+
+id: 5,
+name: 'SmartPhone',
+price: 599,
+releaseDate: 2022-09-14T00:00:00.000Z,
+spec: {
+ram: 4,
+screen: 9.7,
+cpu: 1.66
+1,
+color: [
+'white',
+'orange',
+'gold',
+'gray'
+],
+storage: [
+128
+
+256
+
+_id: 6,
+name: 'xWidget',
+spec: {
+ram: 64,
+
+screen: 9.7,
+
+cpu: 3.66
+
+1,
+color: [
+'black'
+
+storage: [
+
+1024
+
+db.products. find({ "releaseDate": { $type: "date" } })
+
+_id: 1,
+name: 'xPhone',
+price: 799,
+releaseDate: 2011-05-14T00:00:00.000Z,
+spec: {
+ram: 4,
+
+screen: 6.5,
+cpu: 2.66
+
+color: [
+'white',
+'black'
+
+1,
+storage: [
+64,
+128,
+256
+
+_id: 2,
+name: 'xTablet',
+price: 899,
+releaseDate: 2011-09-01T00:00:00.000Z,
+spec: {
+ram: 16,
+screen: 9.5,
+
+cpu: 3.66
+
+color: [
+'white',
+'black',
+purple'
+
+storage: [
+128
+
+256
+
+512
+
+_id: 3,
+name: 'SmartTablet',
+price: 899,
+releaseDate: 2015-01-14T00:00:00.000Z,
+
+spec: {
+ram: 12,
+screen: 9.7,
+
+cpu: 3.66
+1,
+color: [
+'blue'
+
+storage: [
+
+16,
+
+64,
+
+128
+
+_id: 4,
+name: 'SmartPad' ,
+price: 699,
+releaseDate: 2020-05-14T00:00:00.000Z,
+spec: {
+ram: 8,
+
+screen: 9.7,
+
+cpu: 1.66
+color: [
+'white',
+'orange',
+gold',
+gray'
+
+1,
+storage: [
+128
+256,
+
+1024
+
+1
+
+_id: 5,
+name: 'SmartPhone',
+price: 599,
+releaseDate: 2022-09-14T00:00:00.000Z,
+spec: {
+ram: 4,
+screen: 9.7,
+cpu: 1.66
+
+color: [
+'white',
+
+'orange',
+gold',
+gray'
+
+storage: [
+128
+
+256
+
+1,
+
+> db.products. find ( {name: {$type:"string"}})
+
+_id: 1,
+name: 'xPhone' ,
+price: 799,
+releaseDate: 2011-05-14T00:00:00.000Z,
+spec: {
+ram: 4,
+screen: 6.5,
+
+cpu: 2.66
+
+color: [
+'white',
+'black'
+
+storage: [
+64,
+128
+56
+
+1
+
+_id: 2,
+name: 'xTablet',
+price: 899,
+releaseDate: 2011-09-01T00:00:00.000Z,
+spec: {
+ram: 16,
+screen: 9.5,
+cpu: 3.66
+
+color: [
+'white',
+'black',
+'purple'
+
+storage: [
+128
+
+256
+
+512
+
+_id: 3,
+name: 'SmartTablet',
+price: 899,
+releaseDate: 2015-01-14T00:00:00.000Z,
+spec: {
+ram: 12,
+
+screen: 9.7,
+cpu: 3.66
+
+color: [
+'blue'
+
+storage: [
+16,
+
+64,
+
+128
+
+_id: 4,
+name: 'SmartPad',
+price: 699,
+releaseDate: 2020-05-14T00:00:00.000Z,
+spec: {
+ram: 8,
+
+screen: 9.7,
+cpu: 1.66
+color: [
+'white',
+'orange',
+'gold',
+'gray'
+
+storage: [
+128.
+
+256,
+
+1024
+
+_id: 5,
+name: 'SmartPhone',
+price: 599,
+releaseDate: 2022-09-14T00:00:00.000Z,
+spec: {
+
+ram: 4,
+
+screen: 9.7,
+cpu: 1.66
+
+color: [
+'white',
+'orange',
+'gold',
+'gray'
+],
+storage: [
+128
+
+256
+
+_id: 6,
+name: 'xWidget' ,
+spec: {
+ram: 64,
+screen: 9.7,
+
+cpu: 3.66
+
+color: [
+'black'
+
+],
+storage: [
+1024
+
+1
+
+db.products. find ({name: {$type:"int"}})
+
+db.products. find({price: {$type:"int"}})
+_id: 1,
+name: 'xPhone',
+price: 799,
+releaseDate: 2011-05-14T00:00:00.000Z,
+spec: {
+ram: 4,
+screen: 6.5,
+cpu: 2.66
+
+color: [
+'white',
+'black'
+
+storage: [
+
+64.
+
+128
+
+256
+
+_id: 2,
+name: 'xTablet',
+price: 899,
+releaseDate: 2011-09-01T00:00:00.000Z,
+spec: {
+ram: 16,
+screen: 9.5,
+cpu: 3.66
+
+color: [
+'white',
+'black',
+'purple'
+
+],
+storage: [
+128
+
+256
+
+1
+
+_id: 3,
+name: 'SmartTablet',
+price: 899,
+releaseDate: 2015-01-14T00:00:00.000Z,
+spec: {
+ram: 12,
+
+screen: 9.7,
+cpu: 3.66
+
+color: [
+'blue'
+
+storage: [
+16,
+
+64
+
+128
+
+1
+
+_id: 4,
+name: 'SmartPad' ,
+price: 699,
+releaseDate: 2020-05-14T00:00:00.000Z,
+spec: {
+ram: 8,
+
+screen: 9.7,
+cpu: 1.66
+1,
+color: [
+'white',
+'orange',
+
+'gold',
+gray'
+
+storage: [
+128,
+
+256
+
+1024
+
+1
+
+_id: 5,
+name: 'SmartPhone',
+price: 599,
+releaseDate: 2022-09-14T00:00:00.000Z,
+
+spec: {
+ram: 4,
+screen: 9.7,
+
+cpu: 1.66
+
+color: [
+'white',
+'orange',
+'gold',
+'gray'
+
+storage: [
+128,
+
+256
+
+1
+
+> db.products. find({ "price": { $type: "double" } })
+db.products. find({ "price": { $type: "number" } })
+
+_id: 1,
+name: 'xPhone',
+
+price: 799,
+releaseDate: 2011-05-14T00:00:00.000Z,
+spec: {
+ram: 4,
+screen: 6.5,
+
+cpu: 2.66
+
+color: [
+'white',
+'black'
+
+],
+storage: [
+64,
+
+128
+
+25.6
+
+1
+
+_id: 2,
+name: 'xTablet',
+price: 899,
+releaseDate: 2011-09-01T00:00:00.000Z,
+
+spec: {
+ram: 16,
+screen: 9.5,
+cpu: 3.66
+
+color: [
+'white',
+'black',
+'purple'
+
+storage: [
+128.
+
+256,
+512
+
+_id: 3,
+name: 'SmartTablet',
+price: 899,
+releaseDate: 2015-01-14T00:00:00.000Z,
+spec: {
+ram: 12,
+screen: 9.7,
+cpu: 3.66
+color: [
+'blue'
+
+storage: [
+
+16
+
+64,
+
+128
+
+1
+
+_id: 4,
+name: 'SmartPad',
+price: 699,
+releaseDate: 2020-05-14T00:00:00.000Z,
+spec: {
+ram: 8,
+screen: 9.7,
+cpu: 1.66
+
+color: [
+'white',
+'orange' ,
+'gold',
+'gray'
+
+storage: [
+128
+
+256
+
+1024
+
+_id: 5,
+name: 'SmartPhone',
+price: 599,
+releaseDate: 2022-09-14T00:00:00.000Z,
+spec: {
+ram: 4,
+screen: 9.7,
+cpu: 1.66
+
+color: [
+'white',
+
+'orange',
+'gold',
+'gray'
+
+1,
+storage: [
+128,
+256>db.products. find({ "spec": { $type: "object" } })
+
+_id: 1,
+name: 'xPhone' ,
+price: 799,
+releaseDate: 2011-05-14T00:00:00.000Z,
+spec: {
+ram: 4,
+screen: 6.5,
+cpu: 2.66
+1,
+color: [
+'white',
+'black'
+
+1,
+storage: [
+
+64.
+
+128
+256
+
+_id: 2,
+name: 'xTablet',
+price: 899,
+releaseDate: 2011-09-01T00:00:00.000Z,
+spec: {
+ram: 16,
+screen: 9.5,
+
+cpu: 3.66
+
+1,
+color: [
+'white',
+
+'black',
+'purple'
+
+storage: [
+128
+
+256,
+
+512
+
+1,
+
+_id: 3,
+name: 'SmartTablet',
+price: 899,
+releaseDate: 2015-01-14T00:00:00.000Z,
+spec: {
+ram: 12,
+screen: 9.7,
+cpu: 3.66
+color: [
+'blue'
+
+1,
+storage: [
+16.
+
+64,
+
+128
+
+1
+
+_id: 4,
+name: 'SmartPad',
+price: 699,
+releaseDate: 2020-05-14T00:00:00.000Z,
+spec: {
+ram: 8
+screen: 9.7,
+
+cpu: 1.66
+
+color: [
+'white',
+'orange',
+'gold',
+'gray'
+1,
+storage: [
+128
+
+256
+
+1024
+
+_id: 5,
+name: 'SmartPhone',
+
+price: 599,
+releaseDate: 2022-09-14T00:00:00.000Z,
+spec: {
+
+ram: 4,
+
+screen: 9.7,
+cpu: 1.66
+
+color: [
+'white',
+'orange',
+'gold',
+'gray'
+
+storage: [
+128,
+256
+_id: 6,
+name: 'xWidget',
+spec: {
+ram: 64,
+
+screen: 9.7,
+cpu: 3.66
+
+color: [
+'black'
+
+storage: [
+1024
+
+db.products. find({ "releaseDate": { $type: "date" } })
+
+_id: 1,
+name: 'xPhone' ,
+price: 799,
+releaseDate: 2011-05-14T00:00:00.000Z,
+
+spec: {
+ram: 4,
+screen: 6.5,
+cpu: 2.66
+1,
+color: [
+'white',
+'black'
+
+storage: [
+
+64
+
+128
+
+256
+
+1
+
+_id: 2,
+name: 'xTablet',
+price: 899,
+releaseDate: 2011-09-01T00:00:00.000Z,
+spec: {
+ram: 16,
+screen: 9.5,
+cpu: 3.66
+
+color: [
+'white',
+'black',
+'purple'
+
+1,storage: [
+128
+
+256
+
+512
+
+_id: 3,
+name: 'SmartTablet',
+price: 899,
+releaseDate: 2015-01-14T00:00:00.000Z,
+spec: {
+ram: 12,
+screen: 9.7,
+cpu: 3.66
+
+color: [
+'blue'
+1,
+storage: [
+
+16
+
+64,
+12
+
+_id: 4,
+name: 'SmartPad',
+price: 699,
+releaseDate: 2020-05-14T00:00:00.000Z,
+spec: {
+
+ram: 8,
+screen: 9.7,
+cpu: 1.66
+
+color: [
+'white',
+'orange',
+'gold',
+
+'gray'
+
+D,
+storage: [
+128
+
+256
+
+1024
+
+_id: 5,
+name: 'SmartPhone',
+price: 599,
+releaseDate: 2022-09-14T00:00:00.000Z,
+spec: {
+
+ram: 4,
+
+screen: 9.7,
+cpu: 1.66
+
+color: [
+'white',
+
+'orange' ,
+'gold',
+'gray'
+
+],
+storage: [
+128,
+256
+
+1
+
+>db.products. find({ "someField": { $type: "null" } })
+
+>db.products. find({
+"price": { $type: ["int", "double"] }
+
+_id: 1,
+name: 'xPhone',
+price: 799,
+releaseDate: 2011-05-14T00:00:00.000Z,
+spec: {
+ram: 4,
+
+screen: 6.5,
+cpu: 2.66
+
+color: [
+'white',
+
+'black'
+
+storage: [
+64,
+
+128,
+
+256
+
+_id: 2,
+name: 'xTablet',
+price: 899,
+releaseDate: 2011-09-01T00:00:00.000Z,
+spec: {
+ram: 16,
+screen: 9.5,
+
+cpu: 3.66
+
+color: [
+'white'.
+'black',
+'purple'
+],
+storage: [
+128,
+
+256
+
+512
+
+_id: 3,
+name: 'SmartTablet',
+price: 899,
+releaseDate: 2015-01-14T00:00:00.000Z,
+
+spec: {
+ram: 12,
+screen: 9.7,
+
+cpu: 3.66
+
+1,
+color: [
+'blue'
+
+storage: [
+
+16
+
+128
+
+_id: 4,
+name: 'SmartPad',
+price: 699,
+releaseDate: 2020-05-14T00:00:00.000Z,
+spec: {
+ram: 8
+screen: 9.7,
+
+cpu: 1.66
+
+color: [
+'white',
+'orange' ,
+'gold',
+'gray'
+
+1,
+storage: [
+
+128
+
+256
+
+1024
+
+_id: 5,
+name: 'SmartPhone',
+
+price: 599,
+releaseDate: 2022-09-14T00:00:00.000Z,
+spec: {
+
+ram: 4,
+
+screen: 9.7,
+cpu: 1.66
+
+color: [
+'white',
+
+'orange',
+gold',
+gray'
+
+storage: [
+128,
+256
+
+> db.products. find({
+"storage": { $type: ["array", "int"] }
+
+_id: 1,
+name: 'xPhone' ,
+price: 799,
+releaseDate: 2011-05-14T00:00:00.000Z,
+spec: {
+ram: 4,
+
+screen: 6.5,
+
+cpu: 2.66
+
+color: [
+'white',
+'black'
+
+storage: [
+
+64,
+
+128
+
+256
+
+_id: 2,
+name: 'xTablet',
+price: 899,
+releaseDate: 2011-09-01T00:00:00.000Z,
+spec: {
+ram: 16,
+screen: 9.5,
+
+cpu: 3.66
+color: [
+'white',
+'black',
+purple'
+
+1,
+storage: [
+128,
+256
+
+512
+
+_id: 3,
+name: 'SmartTablet',
+price: 899,
+releaseDate: 2015-01-14T00:00:00.000Z,
+spec: {
+ram: 12,
+
+screen: 9.7,
+
+cpu: 3.66
+1,
+color: [
+'blue'
+1,
+storage: [
+16,
+
+64,
+
+128
+
+1
+
+_id: 4,
+name: 'SmartPad',
+
+price: 699,
+releaseDate: 2020-05-14T00:00:00.000Z,
+spec: {
+ram: 8,
+screen: 9.7,
+cpu: 1.66
+
+],
+
+color: [
+'white',
+'orange',
+'gold',
+'gray'
+
+storage: [
+
+128,
+
+256
+
+1024
+_id: 5,
+name: 'SmartPhone',
+price: 599,
+releaseDate: 2022-09-14T00:00:00.000Z,
+spec: {
+ram: 4,
+screen: 9.7,
+cpu: 1.66
+
+color: [
+'white',
+'orange',
+'gold',
+'gray'
+
+],
+storage: [
+128,
+256
+
+_id: 6,
+name: 'xWidget',
+spec: {
+
+ram: 64,
+screen: 9.7,
+
+cpu: 3.66
+
+color: [
+'black'
+
+1,
+storage: [
+1024
+
+>//Array based operators-> size , all , element match
+>// size
+> db.products. find({
+color: {
+$size: 2
+
+1, 0
+name: 1,
+
+color: 1
+
+_id: 1,
+name: 'xPhone',
+color: [
+'white',
+'black'
+
+1
+> // array having 1 value or 2 values
+> db.products. find({
+$or: L
+
+color: {
+$size: 1
+
+color: {
+$size: 2
+
+1, 0
+name: 1,
+color: 1
+
+_id: 1,
+name: 'xPhone',
+color: [
+
+'white',
+'black'
+
+1
+
+_id: 3,
+name: 'SmartTablet',
+color: [
+'blue
+
+1
+
+_id: 6,
+name: 'xWidget' ,
+color: [
+'black'
+
+> // array's all operator
+> db.products. find({
+color: {
+$all: ["black", "white"]
+
+name: 1,
+color: 1
+
+_id: 1,
+name: 'xPhone',
+color: r
+'white',
+'black'
+
+_id: 2,
+name: 'xTablet',
+color: [
+'white',
+'black',
+'purple'
+
+>// it will give white black and any other colour too also
+> db.products. find({
+Sand: [
+{color: "black"},
+{color: "white"}
+
+name: 1,
+color: 1
+
+_id: 1,
+name: 'xPhone' ,
+color: [
+'white',
+'black'
+
+_id: 2,
+name: 'xTablet',
+color: [
+'white',
+'black',
+'purple'
+
+> // Element match
+> db.products. find({
+storage: {
+$elemMatch: {
+$lt: 128
+
+1, {
+name: 1,
+storage: 1
+name: 'xPhone',
+
+storage: [
+64,
+
+128
+
+256
+
+1
+
+_id: 3,
+name: 'SmartTablet',
+storage: [
+16
+64
+
+128
+
+// it is giving the answers where storage is lesser and greater both
+// if condition is met , the whole array will bereturned only
+db.products. find({
+'price': {
+$exists: 1
+
+name: 1,
+price: 1
+
+}).sort({
+price: 1
+
+_id: 5,
+
+name: 'SmartPhone',
+price: 599
+
+_id: 4,
+name: 'SmartPad',
+
+price: 699
+
+_id: 1,
+name: 'xPhone',
+
+price: 799
+
+_id: 2,
+name: 'xTablet',
+price: 899
+
+id: 3,
+_id: 3,
+name: 'SmartTablet',
+price: 899
+
+> /*o print the price of those in which the colour of them is more than 3*/
+> db.products. find(
+{ "color.3": { $exists: true } }, // Checks if there is a 4th item in the array
+{ "price": 1, "_id": @ }
+
+// Only prints the price field
+
+price: 699
+
+price: 599
+
+> db.products. find(
+{ $where: "this.color. length > 3" },
+{ "price": 1, "_id": @ }
+
+price: 699
+
+price: 599
+
+vit>|
